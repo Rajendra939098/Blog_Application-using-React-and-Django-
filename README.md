@@ -28,27 +28,34 @@ Git
 
 **1. Clone the Repository**
 git clone (https://github.com/Rajendra939098/Blog_Application-using-React-and-Django-/)
+
 cd Blog_Application-using-React-and-Django
 
 **2. Setup Backend (Django)**
 cd backend
+
 python -m venv venv
+
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
 pip install -r requirements.txt
 
 **Apply Migrations and Run Server**
 python manage.py migrate
+
 python manage.py runserver
 
 Backend will be running at http://127.0.0.1:8000
 
 **3. Setup Frontend (React)**
 cd frontend
+
 npm install
 
 **Start Frontend Server**
 npm start
+
 Frontend will be available at http://localhost:3000
 
-Note: Ensure that both frontend server and backend server will run parallelly.
+Note: Ensure that both frontend server and backend server will run parallel.
 
