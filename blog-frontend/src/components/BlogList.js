@@ -16,8 +16,8 @@ const BlogList = () => {
   const fetchBlogs = (page) => {
     axios.get(`http://localhost:8000/api/blogs/?page=${page}`)
       .then(response => {
-        setBlogs(response.data.results);  // Adjust to `results` as DRF pagination returns this key
-        setTotalPages(Math.ceil(response.data.count / 5)); // Total pages calculation
+        setBlogs(response.data.results);  
+        setTotalPages(Math.ceil(response.data.count / 5)); 
       })
       .catch(error => {
         console.error('Error fetching blogs:', error);

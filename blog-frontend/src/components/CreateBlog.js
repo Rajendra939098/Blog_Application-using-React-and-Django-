@@ -28,7 +28,7 @@ const CreateBlog = () => {
     try {
       const response = await axios.post(
         "http://localhost:8000/api/blogs/create/",
-        { title, content }, // Don't send 'author' field, it's set by the backend
+        { title, content },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

@@ -34,7 +34,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post('http://localhost:8000/api/register/', { username, email, password });
-      setSuccessMessage(response.data.message);  // Successful signup message
+      setSuccessMessage(response.data.message);  
       setErrorMessage('');
     } catch (error) {
       if (error.response && error.response.data) {
@@ -78,7 +78,7 @@ const Signup = () => {
       </div>
       <button className="btn btn-primary mt-3" onClick={handleSignup}>Signup</button>
 
-      {/* Display error or success message */}
+      
       {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
       {successMessage && <p className="text-success mt-2">{successMessage}</p>}
     </div>

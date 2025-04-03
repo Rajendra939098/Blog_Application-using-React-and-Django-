@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';  // Import Bootstrap for styling
+import 'bootstrap/dist/css/bootstrap.min.css';  
 
 const DeleteBlog = () => {
-  const { blogId } = useParams(); // Get blog ID from the URL
+  const { blogId } = useParams(); 
   const [blog, setBlog] = useState(null);
-  const [deleted, setDeleted] = useState(false); // State to track if the blog is deleted
-  const navigate = useNavigate(); // For navigating after deletion
-
+  const [deleted, setDeleted] = useState(false); 
+  const navigate = useNavigate(); 
   useEffect(() => {
-    const token = localStorage.getItem('access_token');  // Get the token from localStorage
+    const token = localStorage.getItem('access_token');  
 
-    // Fetch the blog details by ID
+    
     axios.get(`http://localhost:8000/api/blogs/${blogId}/`, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
     })
     .then(response => {
-      setBlog(response.data); // Set the blog data to the state
+      setBlog(response.data); 
     })
     .catch(error => {
       console.error('Error fetching blog:', error.response ? error.response.data : error.message);
@@ -27,15 +26,15 @@ const DeleteBlog = () => {
   }, [blogId]);
 
   const handleDeleteBlog = () => {
-    const isConfirmed = window.confirm('Are you sure you want to delete this blog?'); // Ask for confirmation
+    const isConfirmed = window.confirm('Are you sure you want to delete this blog?'); 
 
     if (!isConfirmed) {
-      return; // If not confirmed, return and do nothing
+      return; 
     }
 
-    const token = localStorage.getItem('access_token'); // Get the token from localStorage
+    const token = localStorage.getItem('access_token'); 
 
-    // Send a delete request for the blog
+    
     axios.delete(`http://localhost:8000/api/blogs/${blogId}/delete/`, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -43,9 +42,9 @@ const DeleteBlog = () => {
     })
     .then(response => {
       console.log('Blog deleted successfully:', response.data);
-      setDeleted(true); // Set the deleted state to true after successful deletion
+      setDeleted(true); 
       setTimeout(() => {
-        navigate('/'); // Navigate to the blog list page after 2 seconds
+        navigate('/'); 
       }, 2000);
     })
     .catch(error => {

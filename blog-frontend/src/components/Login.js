@@ -11,27 +11,27 @@ const Login = ({ setUser }) => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // Reset messages
+
     setErrorMessage('');
     setSuccessMessage('');
 
-    // Validate form fields
+  
     if (!validateForm()) return;
 
     try {
-      // Send login request
+     
       const response = await axios.post('http://localhost:8000/api/login/', {
         username: username,
         password: password,
       });
 
-      // Check if a token is returned
+  
       if (response.data.token) {
-        localStorage.setItem('access_token', response.data.token);  // Save token to localStorage
-        setUser(response.data.token);  // Update user state with token
+        localStorage.setItem('access_token', response.data.token);  
+        setUser(response.data.token);  
         setSuccessMessage('Login successful! Redirecting to Home...');
         setTimeout(() => {
-          navigate('/');  // Navigate to home page after a short delay
+          navigate('/');  
         }, 1500);
       } else {
         setErrorMessage('Unexpected error: No token returned');
@@ -45,7 +45,7 @@ const Login = ({ setUser }) => {
     }
   };
 
-  // Basic form validation
+ 
   const validateForm = () => {
     if (!username || !password) {
       setErrorMessage('Please enter both username and password.');
@@ -58,7 +58,7 @@ const Login = ({ setUser }) => {
     <div className="container mt-5">
       <h2 className="text-center mb-4">Login</h2>
       <div className="col-md-6 offset-md-3">
-        {/* Display error or success messages */}
+       
         {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
         {successMessage && <div className="alert alert-success">{successMessage}</div>}
 
